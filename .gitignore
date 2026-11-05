@@ -1,0 +1,19 @@
+# Lead lists are generated on demand and contain real businesses' contact
+# details. They do not belong in version control — regenerate them instead:
+#   cd outreach && python3 leads.py --niche estate_agent --area Manchester
+outreach/*.csv
+outreach/cache/
+
+# Local scratch
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+
+# If you add a build step later
+node_modules/
+dist/
+.env
+.env.local

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expiry — nothing expires without you knowing</title>
+<meta name="description" content="Compliance tracker for UK letting agents. Gas, EICR, EPC, alarms and deposit deadlines across every property, flagged 60 days early.">
+<link rel="stylesheet" href="style.css">
+<style>
+  header { padding: clamp(2.6rem, 6vw, 4.6rem) 0 clamp(2rem, 4vw, 3rem); }
+  .lede { font-size: clamp(1.02rem, 1.9vw, 1.18rem); color: var(--ink-soft); max-width: 36ch; }
+  .cta-row { display: flex; gap: .7rem; flex-wrap: wrap; margin: 1.6rem 0 .9rem; }
+  .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 3rem; align-items: start; }
+  .shot { border: 1px solid var(--line); border-radius: var(--radius); background: var(--white); padding: 1rem; box-shadow: 0 24px 50px -36px rgba(15,20,24,.45); }
+  .shot .row { display: flex; justify-content: space-between; align-items: center; gap: .5rem; padding: .6rem 0; border-bottom: 1px solid #f0f2f5; font-size: .87rem; }
+  .shot .row:last-child { border-bottom: 0; }
+  .shot .head { font-size: .72rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-soft); padding-bottom: .5rem; }
+  .math { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: 1.8rem; }
+  .math div { background: var(--white); padding: 1.3rem; }
+  .math .n { font-size: clamp(1.3rem, 2.9vw, 1.8rem); font-weight: 800; letter-spacing: -.03em; }
+  .math .n.hot { color: var(--bad); }
+  .math .l { font-size: .82rem; color: var(--ink-soft); margin-top: .25rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.1rem; margin-top: 1.7rem; }
+  .card { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.3rem; }
+  .card p { font-size: .9rem; color: var(--ink-soft); margin: .35rem 0 0; }
+  .num { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 7px; background: var(--accent-soft); color: var(--accent); font-weight: 800; font-size: .8rem; margin-bottom: .7rem; }
+  .price-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2.2rem; align-items: center; }
+  .price-card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 1.7rem; box-shadow: 0 28px 56px -40px rgba(15,20,24,.5); }
+  .amount { font-size: 2.4rem; font-weight: 800; letter-spacing: -.04em; line-height: 1; }
+  .amount small { font-size: .9rem; font-weight: 600; color: var(--ink-soft); letter-spacing: 0; }
+  .price-card ul { list-style: none; padding: 0; margin: 1.2rem 0 1.4rem; }
+  .price-card li { padding: .42rem 0 .42rem 1.5rem; position: relative; font-size: .91rem; border-bottom: 1px solid #f2f4f6; }
+  .price-card li:last-child { border-bottom: 0; }
+  .price-card li::before { content: "✓"; position: absolute; left: 0; color: var(--good); font-weight: 800; }
+  details { border-bottom: 1px solid var(--line); padding: 1rem 0; }
+  details summary { cursor: pointer; font-weight: 650; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content: "+"; color: var(--ink-soft); font-weight: 400; }
+  details[open] summary::after { content: "–"; }
+  details p { margin: .6rem 0 0; color: var(--ink-soft); font-size: .93rem; }
+  @media (max-width: 840px) { .hero-grid, .price-wrap { grid-template-columns: 1fr; gap: 2rem; } .math { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand" data-cfg="brand">Expiry</div>
+    <a class="btn btn-primary btn-sm" href="app.html">Try the live demo</a>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">For <span data-cfg="niche">letting agents</span> · 50–500 properties</div>
+      <h1>Nothing expires without you knowing.</h1>
+      <p class="lede" style="margin-top:1.1rem">
+        Gas certificates, EICRs, EPCs, alarm checks, deposit deadlines — across every
+        property you manage. Flagged 60 days before it becomes your problem, not
+        the week after a Section 21 gets thrown out.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="app.html">See it on your own portfolio</a>
+        <a class="btn btn-ghost" href="#how">How it works</a>
+      </div>
+      <p class="tiny muted"><b style="color:var(--ink)">30 days free.</b> I import your properties myself. No contract.</p>
+    </div>
+
+    <div class="shot" aria-hidden="true">
+      <div class="head">Palatine Road · M20</div>
+      <div class="row"><span>Gas Safety</span><span class="pill pill-bad">Overdue 34d</span></div>
+      <div class="row"><span>EICR</span><span class="pill pill-warn">Due in 41d</span></div>
+      <div class="row"><span>EPC (band E+)</span><span class="pill pill-good">Valid</span></div>
+      <div class="row"><span>Alarm check</span><span class="pill pill-warn">Due in 18d</span></div>
+      <div class="row"><span>Deposit protected</span><span class="pill pill-good">Done</span></div>
+      <div class="row"><span>How to Rent served</span><span class="pill pill-bad">Missing</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <div class="kicker">Why this, why now</div>
+    <h2>One expired certificate can void a possession claim.</h2>
+    <p class="muted" style="max-width:62ch;margin-top:.9rem">
+      Councils can issue civil penalties of up to £30,000 per breach, per property.
+      But the damage that actually hurts an agency is quieter: the landlord who
+      finds out, and takes their portfolio somewhere else. Most agencies track
+      this in a spreadsheet that somebody updates when they remember.
+    </p>
+    <div class="math">
+      <div>
+        <div class="n">340</div>
+        <div class="l">properties in the average letting agency</div>
+      </div>
+      <div>
+        <div class="n hot">£30,000</div>
+        <div class="l">maximum civil penalty per breach, per property</div>
+      </div>
+      <div>
+        <div class="n">£16,000</div>
+        <div class="l">a year a small agency already spends on compliance admin</div>
+      </div>
+    </div>
+    <p class="tiny muted" style="margin-top:.9rem">
+      Sources: English Housing Survey 2024/25, Housing, Communities and Local Government
+      Committee (2024), Credas 2025 survey of 250 UK agents.
+    </p>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="kicker">How it works</div>
+    <h2>Sits next to what you already use. Does not replace it.</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="num">1</div>
+        <h3>Import</h3>
+        <p>Send me your portfolio export. I load addresses, tenancy start dates and the last date each certificate was issued.</p>
+      </div>
+      <div class="card">
+        <div class="num">2</div>
+        <h3>Flag</h3>
+        <p>Every property gets a status per obligation — valid, due in 60 days, or overdue. One screen, no training.</p>
+      </div>
+      <div class="card">
+        <div class="num">3</div>
+        <h3>Chase</h3>
+        <p>A weekly email listing exactly what expires next, per property, with the contractor already named. Forward it and it is done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap price-wrap">
+    <div>
+      <div class="kicker">Pricing</div>
+      <h2><span data-cfg="price">£1</span> per property, per month.</h2>
+      <p class="muted" style="margin-top:.9rem">
+        340 properties is £340 a month — less than two hours of a property
+        manager's time, and a fraction of one penalty. Minimum <span data-cfg="min">£99</span>/month for
+        smaller portfolios. I am taking on five agencies in Greater Manchester
+        to start, because I would rather do this properly for five than badly for fifty.
+      </p>
+    </div>
+    <div class="price-card">
+      <div class="amount"><span data-cfg="price">£1</span><small> /property/month</small></div>
+      <p class="tiny muted" style="margin-top:.4rem">First 30 days free · no contract</p>
+      <ul>
+        <li>Every gas, EICR, EPC and alarm deadline</li>
+        <li>Deposit protection + prescribed documents</li>
+        <li>Flags 60 days before expiry</li>
+        <li>Weekly expiry email you can forward</li>
+        <li>CSV export for your own records</li>
+        <li>Cancel by email, keep your data</li>
+      </ul>
+      <a class="btn btn-primary" href="app.html" style="width:100%">Try the demo</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:760px">
+    <div class="kicker">Questions</div>
+    <h2 style="margin-bottom:1.3rem">The ones everyone asks.</h2>
+    <details open>
+      <summary>We already use Alto / Reapit / Street.</summary>
+      <p>Good — keep it. Those are practice management systems and they are built for the whole agency. This is the compliance check that runs alongside, and it takes a portfolio export to set up. Nobody switches software for a compliance report.</p>
+    </details>
+    <details>
+      <summary>Do we have to move our data?</summary>
+      <p>You send an export, I import it, and the demo stores nothing on a server. If you want the hosted version later, it is your call and your data comes with you.</p>
+    </details>
+    <details>
+      <summary>Is this legal advice?</summary>
+      <p>No. It is a reminder system. You remain responsible for holding valid certificates and serving the right documents before a tenancy starts. Nothing here makes an agency compliant on its own.</p>
+    </details>
+    <details>
+      <summary>Who are you?</summary>
+      <p><span data-cfg="founder">Soham Vishal Seth</span>, based in <span data-cfg="town">Greater Manchester</span>, building this on my own. That is why it costs £1 per property and not £1.50 with a three-year contract — and why you get me on the phone, not a support queue.</p>
+    </details>
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="text-align:center;max-width:620px">
+    <h2>Five agencies in <span data-cfg="town">Greater Manchester</span>.</h2>
+    <p class="muted" style="margin:.9rem 0 1.4rem">
+      Fifteen minutes. Bring a portfolio export and I will show you what is
+      already expired in it. If the answer is nothing, I will tell you so.
+    </p>
+    <a class="btn btn-primary" href="mailto:soham.v.seth@gmail.com" data-cfg-link="booking">Book 15 minutes</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© <span id="yr">2026</span> <span data-cfg="brand">Expiry</span> · <span data-cfg="town">Greater Manchester</span></div>
+    <div><a href="mailto:soham.v.seth@gmail.com" data-cfg-link="email" data-cfg="email">soham.v.seth@gmail.com</a></div>
+  </div>
+</footer>
+<script src="config.js"></script>
+<script>document.getElementById("yr").textContent = new Date().getFullYear();</script>
+</body>
+</html>
