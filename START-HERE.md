@@ -118,3 +118,32 @@ This fails for one of three reasons, and none of them are the product:
 
 The upside case in `PLAN.md` is a lottery ticket. The floor case — a business you
 own doing £10k+/month by 25 — is not. Protect the floor case first.
+
+## Get it onto your GitHub
+
+Everything is committed in this workspace, but this environment has no GitHub
+credentials, so the push has to be run by you.
+
+**1. Create the empty repo.** Go to https://github.com/new and name it `expiry`.
+Leave "Add a README", .gitignore and licence **off** — the repo already has them.
+
+**2. Authenticate once, in a terminal in this workspace.**
+
+```bash
+gh auth login          # GitHub.com -> HTTPS -> Login with a web browser
+```
+
+**3. Push.** `origin` is already set to https://github.com/Soso1311/expiry.git.
+
+```bash
+git push -u origin HEAD:main
+```
+
+`HEAD:main` publishes the current branch as `main` on the remote, so you don't
+need to rename anything locally first.
+
+From then on, a normal `git push` works from the `main` branch:
+
+```bash
+git checkout -b main --track origin/main
+```

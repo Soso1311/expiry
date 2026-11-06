@@ -86,7 +86,7 @@ This repo is already committed locally. To send it to GitHub / GitLab:
 
 ```bash
 # create an empty repo on your host first, then:
-git remote add origin git@github.com:YOUR-USERNAME/expiry.git
+git remote add origin https://github.com/Soso1311/expiry.git
 git branch -M main
 git push -u origin main
 ```
